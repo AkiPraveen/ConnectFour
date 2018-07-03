@@ -69,6 +69,24 @@ function isVerticalWin() {
 	}
 }
 
+function isDiagonalWin() {
+	for (var col=0; col < 5; col++) {
+		for (var row=0; row < 7; row++) {
+			if (checkColorMatch(getColor(row, col), getColor(row+1, col+1), getColor(row+2, col+2), getColor(row+3, col+3))) {
+				console.log('diagonal win found');
+				reportWin(row, col);
+				return true;
+			} else if (checkColorMatch(getColor(row, col), getColor(row-1, col+1), getColor(row-2, col+2), getColor(row-3, col-3))) {
+				console.log('diagonal win found');
+				reportWin(row, col);
+				return true;
+			} else {
+				continue;
+			}
+		}
+	}
+}
+
 
 // game state changers
 
