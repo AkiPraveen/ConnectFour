@@ -1,9 +1,11 @@
 .board button{
-	width:100px;
-	height:100px;
+	width:70px;
+	height:70px;
 	background-color:#f1f2f6;
 	margin:1px;
-	border-width:1px;
+	border-width:3px;
+	border-style:inset;
+	border-radius:50%;
 }
 .board button:focus{
 	outline:0;
@@ -20,4 +22,21 @@
 	text-align:center;
 	font-size:36px;
 	margin-top:20px;
+}
+
+.board {
+	background:#0984e3;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+th, td {
+	padding: 5px;
+	text-align: left;
+}
+
+.main {
+	text-align:center;
+	width:90%;
+	margin-left:5%;
 }

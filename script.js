@@ -54,8 +54,12 @@ function checkColorMatch(one, two, three, four) {
 function launchNewGame(){
 
 	// Hide game board, then show the player info modal.
+
 	$('.gameActive').css('display', 'none')
-	$('#playerInfo').modal('show')
+	$('#playerInfo').modal({
+	    backdrop: 'static',
+	    keyboard: false
+	})
 
 	var table = $('table tr');
 
@@ -137,9 +141,11 @@ function launchNewGame(){
 		}
 	}
 
-	// Game logic
+	// game logic
 
 	$('h3').text(Player1+", your turn! Pick a column!")
+
+	// first, fill an available circle.
 
 	$('.board button').on('click', function() {
 		
@@ -150,8 +156,10 @@ function launchNewGame(){
 		setColor(bottomAvailable, col, currentColor);
 
 		// if a win is found
+
 		if(isHoriontalWin() || isVerticalWin() || isDiagonalWin()) {
-			$('h1').text(currentName+', you win!')
+			$('.versus').text(currentName+', you win!')
+			$('h3').fadeOut()
 			$('.gameActive').css('pointer-events', 'none')
 			$('.again').fadeIn()
 		}
@@ -180,7 +188,6 @@ function updatePlayerInfo() {
 	    alert(document.getElementById('player2').value);
 	} 
 
-
 	// assign names. if fields are left blank, keep default names.
 	if(document.getElementById('player1').value != '') {
 		Player1 = document.getElementById('player1').value;
@@ -194,7 +201,6 @@ function updatePlayerInfo() {
 		console.log(Player1);
 		console.log(Player2);
 	}
-	
 
 	if(debug) alert(Player1 + ' vs. ' + Player2);
 
