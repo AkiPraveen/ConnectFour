@@ -1,4 +1,18 @@
+// AKILESH PRAVEEN - 2018
+
+// Global variables
+
 var debug = false
+
+var Player1 = 'Player 1'
+var Player2 = 'Player 2'
+
+var Player1Color = 'red'
+var Player2Color = 'blue'
+
+var table = $('table tr');
+
+// Document Ready function
 
 $( document ).ready(function(){
 	// allow confirmation on 'enter' keypress
@@ -12,8 +26,6 @@ $( document ).ready(function(){
 	  }
 	});
 
-	alert('yah')
-
 	input2.addEventListener("keyup", function(event) {
 	  if (event.keyCode === 13) {
 	    // trigger 'Save and close'
@@ -24,16 +36,7 @@ $( document ).ready(function(){
 	launchNewGame()
 });
 
-var Player1 = 'Player 1'
-var Player2 = 'Player 2'
-
-
-var Player1Color = 'red'
-var Player2Color = 'blue'
-
-
-
-var table = $('table tr');
+// Color setter, getter, and matching check.
 
 function setColor(row, col, color) {
 	return table.eq(row).find('td').eq(col).find('button').css('background-color', color);
@@ -46,37 +49,21 @@ function getColor(row, col) {
 function checkColorMatch(one, two, three, four) {
 	return (one === two && one === three && one === four && one != 'rgb(241, 242, 246)' && one != undefined );
 }
-// game state changers
+
 
 function launchNewGame(){
-	// hide the game board before modal is filled
+
+	// Hide game board, then show the player info modal.
 	$('.gameActive').css('display', 'none')
-	
 	$('#playerInfo').modal('show')
 
-
-
-	var gameState = 1;
 	var table = $('table tr');
-
-	// alert(table.eq(0).find('td').eq(0).find('button').css('background-color'));
 
 	var currentPlayer = 1;
 	var currentName = Player1;
 	var currentColor = Player1Color;
 
-
-
-	function setColor(row, col, color) {
-		return table.eq(row).find('td').eq(col).find('button').css('background-color', color);
-		alert('this is the one')
-	}
-
-	function getColor(row, col) {
-		return table.eq(row).find('td').eq(col).find('button').css('background-color');
-	}
-
-	// alert(getColor(0,1));
+	// Utility Functions + Win Condition Checks
 
 	function getBottom(col) {
 		var currentColor = getColor(5, col);
@@ -87,17 +74,6 @@ function launchNewGame(){
 				return row;
 			}
 		}
-
-		
-	}
-
-	// alert(currentColor)
-	// alert(getBottom(0))
-
-	// checks
-
-	function checkColorMatch(one, two, three, four) {
-		return (one === two && one === three && one === four && one != 'rgb(241, 242, 246)' && one != undefined );
 	}
 
 	function isHoriontalWin() {
@@ -161,29 +137,23 @@ function launchNewGame(){
 		}
 	}
 
+	// Game logic
 
-	$('h3').text(Player1+" your turn! Pick a column to drop in!")
+	$('h3').text(Player1+", your turn! Pick a column!")
 
 	$('.board button').on('click', function() {
 		
 		var col = $(this).closest('td').index();
 
-		// alert(getColor(0, col));
-		//alert(getBottom(col));
-
 		var bottomAvailable = getBottom(col);
-
-		 // alert(bottomAvailable);
-
-		 // alert(currentColor)
 
 		setColor(bottomAvailable, col, currentColor);
 
+		// if a win is found
 		if(isHoriontalWin() || isVerticalWin() || isDiagonalWin()) {
 			$('h1').text(currentName+', you win!')
-			// $('h3').fadeOut('fast');
-			// $('h2').fadeOut('fast');
-
+			$('.gameActive').css('pointer-events', 'none')
+			$('.again').fadeIn()
 		}
 
 		currentPlayer = currentPlayer * -1;
@@ -204,6 +174,7 @@ function launchNewGame(){
 
 
 function updatePlayerInfo() {
+
 	if(debug){
 		alert(document.getElementById('player1').value);
 	    alert(document.getElementById('player2').value);
@@ -230,14 +201,12 @@ function updatePlayerInfo() {
 
 	// show the game board again
 	$('.gameActive').fadeIn();
-	// $('.gameActive').css('display', 'initial')
 
 	document.getElementById('versus').innerHTML = Player1 + ' vs. ' + Player2;
 
 }
 
-
-// debug
+// Simple printing function
 function reportWin(row, col){
 	console.log('You won at (row, col)');
 	console.log(row);
