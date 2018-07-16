@@ -1,8 +1,14 @@
 # Connect Four
 
-A simple rendition of Connect Four using HTML, CSS, JS, BootStrap and JQuery. This is more or less a front-end only project for the time being.
+A simple web-based rendition of Connect4 using front-end web development technologies.
 
-## Planned Features
+## Created Using
+* HTML
+* CSS
+* JavaScript
+* BootStrap
+* JQuery
 
+## Planned Features _(Tentative)_
 * Custom colors for players
 * Tic-Tac-Toe gamemode
