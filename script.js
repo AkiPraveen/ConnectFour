@@ -1,6 +1,28 @@
 var debug = false
 
-$( document ).ready(launchNewGame);
+$( document ).ready(function(){
+	// allow confirmation on 'enter' keypress
+	var input1 = document.getElementById("player1");
+	var input2 = document.getElementById("player2");
+
+	input1.addEventListener("keyup", function(event) {
+	  if (event.keyCode === 13) {
+	    // trigger 'Save and close'
+	    document.getElementById("dismissPlayerData").click();
+	  }
+	});
+
+	alert('yah')
+
+	input2.addEventListener("keyup", function(event) {
+	  if (event.keyCode === 13) {
+	    // trigger 'Save and close'
+	    document.getElementById("dismissPlayerData").click();
+	  }
+	});
+
+	launchNewGame()
+});
 
 var Player1 = 'Player 1'
 var Player2 = 'Player 2'
@@ -27,9 +49,11 @@ function checkColorMatch(one, two, three, four) {
 // game state changers
 
 function launchNewGame(){
+	// hide the game board before modal is filled
+	$('.gameActive').css('display', 'none')
+	
 	$('#playerInfo').modal('show')
 
-	
 
 
 	var gameState = 1;
@@ -42,8 +66,10 @@ function launchNewGame(){
 	var currentColor = Player1Color;
 
 
+
 	function setColor(row, col, color) {
 		return table.eq(row).find('td').eq(col).find('button').css('background-color', color);
+		alert('this is the one')
 	}
 
 	function getColor(row, col) {
@@ -62,7 +88,7 @@ function launchNewGame(){
 			}
 		}
 
-		return -1;
+		
 	}
 
 	// alert(currentColor)
@@ -155,8 +181,8 @@ function launchNewGame(){
 
 		if(isHoriontalWin() || isVerticalWin() || isDiagonalWin()) {
 			$('h1').text(currentName+', you win!')
-			$('h3').fadeOut('fast');
-			$('h2').fadeOut('fast');
+			// $('h3').fadeOut('fast');
+			// $('h2').fadeOut('fast');
 
 		}
 
@@ -174,6 +200,8 @@ function launchNewGame(){
 
 	})
 }
+
+
 
 function updatePlayerInfo() {
 	if(debug){
@@ -197,25 +225,12 @@ function updatePlayerInfo() {
 	}
 	
 
-	// allow confirmation on 'enter' keypress
-	var input1 = document.getElementById("player1");
-	var input2 = document.getElementById("player2");
-
-	input1.addEventListener("keyup", function(event) {
-	  if (event.keyCode === 13) {
-	    // trigger 'Save and close'
-	    document.getElementById("dismissPlayerData").click();
-	  }
-	});
-
-	input2.addEventListener("keyup", function(event) {
-	  if (event.keyCode === 13) {
-	    // trigger 'Save and close'
-	    document.getElementById("dismissPlayerData").click();
-	  }
-	});
-
 	if(debug) alert(Player1 + ' vs. ' + Player2);
+
+
+	// show the game board again
+	$('.gameActive').fadeIn();
+	// $('.gameActive').css('display', 'initial')
 
 	document.getElementById('versus').innerHTML = Player1 + ' vs. ' + Player2;
 
