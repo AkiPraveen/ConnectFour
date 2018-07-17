@@ -111,7 +111,6 @@ function startGame(){
 	var currentPlayer = 1;
 	var currentName = Player1;
 	var currentColor = Player1Color;
-	alert(Player1Color);
 
 	// Utility Functions + Win Condition Checks
 
