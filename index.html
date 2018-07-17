@@ -26,25 +26,40 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Welcome to Connect Four!</h5>
+	        <h5 class="modal-title" id="exampleModalLabel">Welcome to CONNECT4!</h5>
 	      </div>
 	      <div class="modal-body">
-	        Please fill out the following. <br />
+	        Please pick names and colors for Player 1 and Player 2. <br />
 	        <br /> Players will be assigned default names if fields are left blank. <br /> <br />
 
 	        <div class="input-group mb-3">
 	          <div class="input-group-prepend">
-	            <span class="input-group-text" id="inputGroup-sizing-default">Player 1 Name</span>
+	            <span class="input-group-text" id="inputGroup-sizing-default">P1 Name</span>
 	          </div>
 	          <input type="text" id="player1" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 	        </div>
 
 	        <div class="input-group mb-3">
 	          <div class="input-group-prepend">
-	            <span class="input-group-text" id="inputGroup-sizing-default">Player 2 Name</span>
+	            <span class="input-group-text" id="inputGroup-sizing-default">P2 Name</span>
 	          </div>
 	          <input type="text" id="player2" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 	        </div>
+
+	        <br />
+
+	        <form>
+	          <div class="form-row" style="text-align:center">
+	            <div class="col">
+	              <input type="color" id="body" name="color" value="#ff0000" />
+	              <p> <br /> <em> Player 1 Color </em> </p>
+	            </div>
+	            <div class="col">
+	              <input type="color" id="body" name="color" value="#0000ff" />
+	              <p> <br /> <em> Player 2 Color </em> </p>
+	            </div>
+	          </div>
+	        </form>
 
 
 
@@ -64,7 +79,7 @@
 		<div class="gameActive">	
 			<br />
 			<h1> <span style="color:#d63031">CONNECT</span><span style="color:#0984e3">4</span> </h1> <br />
-			<p> Welcome to Connect Four! <br /><br /> Match four chips of the same color in a row, column, or diagonal to win. Click a column to drop a chip in. </p>
+			<p><br /> Match four chips of the same color in a row, column, or diagonal to win. Click a column to drop a chip in. </p>
 
 			<h3 style="color:grey"></h3> <br />
 
