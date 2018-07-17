@@ -33,24 +33,28 @@ $( document ).ready(function(){
 	  }
 	});
 
+
+	// run the new game code
 	launchNewGame()
 });
 
-// Color setter, getter, and matching check.
 
+// cell color setter method
 function setColor(row, col, color) {
 	return table.eq(row).find('td').eq(col).find('button').css('background-color', color);
 }
 
+// cell color getter method
 function getColor(row, col) {
 	return table.eq(row).find('td').eq(col).find('button').css('background-color');
 }
 
+// cell color match checker
 function checkColorMatch(one, two, three, four) {
 	return (one === two && one === three && one === four && one != 'rgb(241, 242, 246)' && one != undefined );
 }
 
-
+// opens the player data modal. Is run first.
 function launchNewGame(){
 
 	// Hide game board, then show the player info modal.
@@ -60,12 +64,54 @@ function launchNewGame(){
 	    backdrop: 'static',
 	    keyboard: false
 	})
+}
+
+// saves player data, calls startGame()
+function updatePlayerInfo() {
+
+	if(debug){
+		alert(document.getElementById('player1').value);
+	    alert(document.getElementById('player2').value);
+	} 
+
+	// assign names. if fields are left blank, keep default names.
+	if(document.getElementById('player1').value != '') {
+		Player1 = document.getElementById('player1').value;
+	}
+
+	if(document.getElementById('player2').value != '') {
+		Player2 = document.getElementById('player2').value;
+	}
+
+	// store player colors
+	Player1Color = document.getElementsByClassName('PColor')[0].value;
+	Player2Color = document.getElementsByClassName('PColor')[1].value;
+
+	if(debug) {
+		console.log(Player1);
+		console.log(Player2);
+	}
+
+	if(debug) alert(Player1 + ' vs. ' + Player2);
+
+
+	// show the game board again
+	$('.gameActive').fadeIn();
+
+	document.getElementById('versus').innerHTML = Player1 + ' vs. ' + Player2;
+
+	startGame();
+}
+
+// assumes player data is set, begins game.
+function startGame(){
 
 	var table = $('table tr');
 
 	var currentPlayer = 1;
 	var currentName = Player1;
 	var currentColor = Player1Color;
+	alert(Player1Color);
 
 	// Utility Functions + Win Condition Checks
 
@@ -177,39 +223,6 @@ function launchNewGame(){
 		}
 
 	})
-}
-
-
-
-function updatePlayerInfo() {
-
-	if(debug){
-		alert(document.getElementById('player1').value);
-	    alert(document.getElementById('player2').value);
-	} 
-
-	// assign names. if fields are left blank, keep default names.
-	if(document.getElementById('player1').value != '') {
-		Player1 = document.getElementById('player1').value;
-	}
-
-	if(document.getElementById('player2').value != '') {
-		Player2 = document.getElementById('player2').value;
-	}
-
-	if(debug) {
-		console.log(Player1);
-		console.log(Player2);
-	}
-
-	if(debug) alert(Player1 + ' vs. ' + Player2);
-
-
-	// show the game board again
-	$('.gameActive').fadeIn();
-
-	document.getElementById('versus').innerHTML = Player1 + ' vs. ' + Player2;
-
 }
 
 // Simple printing function
