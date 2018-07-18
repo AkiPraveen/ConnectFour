@@ -10,6 +10,5 @@ A simple web-based rendition of Connect4 using front-end web development technol
 * JQuery
 
 ## Features
-- [x] Custom player names
-- [x] Custom colors for players
-- [ ] Tic-Tac-Toe gamemode
+- Custom player names
+- Custom colors for players
